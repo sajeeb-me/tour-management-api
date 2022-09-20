@@ -8,11 +8,15 @@ const mongoose = require('mongoose');
 app.use(express.json());
 app.use(cors());
 
+// all routes
+const packageRoute = require('./routes/package.route');
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.use('api/v1/package', packageRoute)
 
 
 module.exports = app;

@@ -7,5 +7,8 @@ router.route('/')
     .get(packageController.getPackages)
     .post(packageController.createPackage)
 
+router.route('/:id')
+    .get(packageController.getPackageById)
+
 
 module.exports = router;

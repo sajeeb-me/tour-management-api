@@ -8,3 +8,7 @@ exports.createPackageService = async (data) => {
     const result = await Package.create(data);
     return result;
 }
+exports.getPackageByIdService = async (packageId) => {
+    const result = await Package.findOne({ _id: packageId });
+    return result;
+}

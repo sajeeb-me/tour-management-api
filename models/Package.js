@@ -21,6 +21,10 @@ const packageSchema = Schema({
     packageType: {
         type: String,
         required: true,
+        enum: {
+            values: ['Family', 'Couple', 'Group', 'Flight', 'Corporate'],
+            message: "Package type can't be {VALUE}, must be Family/Couple/Group/Flight/Corporate"
+        }
     },
     location: {
         type: String,
@@ -28,7 +32,6 @@ const packageSchema = Schema({
     },
     image: {
         type: String,
-        required: true,
     },
     date: {
         type: String,

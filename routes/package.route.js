@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.route('/')
     .get(packageController.getPackages)
+    .post(packageController.createPackage)
 
 
 module.exports = router;

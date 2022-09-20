@@ -5,9 +5,9 @@ exports.getPackagesService = async (filters, queries) => {
     // const package = await Package.find({});
 
     // get products
-    const package = await Package.find(filters).sort(queries.sortBy).select(queries.fields);
-
-    return package;
+    const package = await Package.find(filters).skip(queries.skip).limit(queries.limit).select(queries.fields).sort(queries.sortBy);
+    const total = await Package.countDocuments(filters)
+    return { package, total };
 }
 exports.createPackageService = async (data) => {
     const result = await Package.create(data);

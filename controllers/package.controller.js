@@ -16,6 +16,13 @@ exports.getPackages = async (req, res, next) => {
             const sortBy = req.query.sort.split(',').join(' ');
             queries.sortBy = sortBy;
         }
+        if (req.query.page) {
+            const { page = 1, limit = 2 } = req.query;
+
+            const skip = (parseInt(page) - 1) * parseInt(limit);
+            queries.skip = skip;
+            queries.limit = parseInt(limit);
+        }
 
         const packages = await packageServices.getPackagesService(filters, queries);
 

@@ -12,3 +12,7 @@ exports.getPackageByIdService = async (packageId) => {
     const result = await Package.findOne({ _id: packageId });
     return result;
 }
+exports.updatePackageByIdService = async (packageId, updatedBody) => {
+    const result = await Package.updateOne({ _id: packageId }, { $set: updatedBody }, { runValidators: true });
+    return result;
+}

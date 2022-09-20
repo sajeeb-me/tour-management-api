@@ -45,6 +45,15 @@ const packageSchema = Schema({
     timestamps: true,
 });
 
+// mongoose middleware for saving data: pre/post
+// packageSchema.pre('save', function (next) {
+//     console.log('before saving data');
+//     if (this.quantity === 0) {
+//         this.status = 'out-of-stock'
+//     }
+//     next();
+// })
+
 const Package = mongoose.model('Package', packageSchema);
 
 module.exports = Package;

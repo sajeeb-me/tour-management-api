@@ -65,3 +65,38 @@ exports.getPackageById = async (req, res, next) => {
         })
     }
 }
+exports.updatePackageById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const body = req.body;
+
+        const result = await packageServices.updatePackageByIdService(id, body);
+
+        if (!result.acknowledged) {
+            res.status(400).json({
+                status: 'failed',
+                message: 'Operation failed.'
+            })
+        } else {
+            if (!result.modifiedCount) {
+                res.status(400).json({
+                    status: 'failed',
+                    message: 'Can not modified.'
+                })
+            } else {
+                res.status(200).json({
+                    status: 'success',
+                    message: 'Successfully modified the package',
+                    data: result,
+                })
+            }
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: 'Operation failed.',
+            error: error.message
+        })
+    }
+}

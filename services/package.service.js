@@ -1,7 +1,12 @@
 const Package = require("../models/package")
 
-exports.getPackagesService = async () => {
-    const package = await Package.find({});
+exports.getPackagesService = async (filters, queries) => {
+    // get all products
+    // const package = await Package.find({});
+
+    // get products
+    const package = await Package.find(filters).sort(queries.sortBy).select(queries.fields);
+
     return package;
 }
 exports.createPackageService = async (data) => {

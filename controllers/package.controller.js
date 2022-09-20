@@ -3,7 +3,21 @@ const packageServices = require("../services/package.service")
 
 exports.getPackages = async (req, res, next) => {
     try {
-        const packages = await packageServices.getPackagesService();
+        const filters = { ...req.query };
+        const excludeFields = ['sort', 'page', 'limit'];
+        excludeFields.forEach(field => delete filters[field]);
+
+        const queries = {};
+        if (req.query.fields) {
+            const fields = req.query.fields.split(',').join(' ');
+            queries.fields = fields;
+        }
+        if (req.query.sort) {
+            const sortBy = req.query.sort.split(',').join(' ');
+            queries.sortBy = sortBy;
+        }
+
+        const packages = await packageServices.getPackagesService(filters, queries);
 
         res.status(200).json({
             status: "success",

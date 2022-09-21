@@ -133,7 +133,7 @@ exports.getCheapestPackages = async (req, res, next) => {
         } else {
             res.status(200).json({
                 status: 'success',
-                message: 'Successfully modified the package',
+                message: 'Successfully get three cheapest the packages',
                 data: result,
             })
         }

@@ -43,7 +43,7 @@ const packageSchema = Schema({
     },
     totalViews: {
         type: Number,
-        required: true,
+        default: 0,
     },
 }, {
     timestamps: true,

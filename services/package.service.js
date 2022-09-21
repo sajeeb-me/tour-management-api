@@ -18,7 +18,7 @@ exports.createPackageService = async (data) => {
     return result;
 }
 exports.getPackageByIdService = async (packageId) => {
-    const result = await Package.findOne({ _id: packageId });
+    const result = await Package.findOneAndUpdate({ _id: packageId }, { $inc: { totalViews: 1 } }, { new: true });
     return result;
 }
 exports.updatePackageByIdService = async (packageId, updatedBody) => {

@@ -6,6 +6,9 @@ const router = express.Router();
 router.route('/cheapest')
     .get(packageController.getCheapestPackages)
 
+router.route('/trending')
+    .get(packageController.getTrendingPackages)
+
 router.route('/')
     .get(packageController.getPackages)
     .post(packageController.createPackage)

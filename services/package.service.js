@@ -25,6 +25,10 @@ exports.updatePackageByIdService = async (packageId, updatedBody) => {
     const result = await Package.updateOne({ _id: packageId }, { $set: updatedBody }, { runValidators: true });
     return result;
 }
+exports.getTrendingPackagesServices = async () => {
+    const result = await Package.find().sort('-totalViews').limit(3);
+    return result;
+}
 exports.getCheapestPackagesService = async () => {
     const result = await Package.find().sort('price').limit(3);
     return result;

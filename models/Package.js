@@ -41,16 +41,19 @@ const packageSchema = Schema({
         type: String,
         required: true,
     },
+    totalViews: {
+        type: Number,
+        required: true,
+    },
 }, {
     timestamps: true,
 });
 
-// mongoose middleware for saving data: pre/post
-// packageSchema.pre('save', function (next) {
+// packageSchema.post('save', function (next) {
 //     console.log('before saving data');
-//     if (this.quantity === 0) {
-//         this.status = 'out-of-stock'
-//     }
+
+//     this.totalViews = parseInt(this.totalViews) + 1;
+
 //     next();
 // })
 

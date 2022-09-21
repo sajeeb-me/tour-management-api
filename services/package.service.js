@@ -5,7 +5,11 @@ exports.getPackagesService = async (filters, queries) => {
     // const package = await Package.find({});
 
     // get products
-    const package = await Package.find(filters).skip(queries.skip).limit(queries.limit).select(queries.fields).sort(queries.sortBy);
+    const package = await Package.find(filters)
+        .skip(queries.skip)
+        .limit(queries.limit)
+        .select(queries.fields)
+        .sort(queries.sortBy);
     const total = await Package.countDocuments(filters)
     return { package, total };
 }
@@ -19,5 +23,9 @@ exports.getPackageByIdService = async (packageId) => {
 }
 exports.updatePackageByIdService = async (packageId, updatedBody) => {
     const result = await Package.updateOne({ _id: packageId }, { $set: updatedBody }, { runValidators: true });
+    return result;
+}
+exports.getCheapestPackagesService = async () => {
+    const result = await Package.find().sort('price').limit(3);
     return result;
 }

@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api/v1/package', packageRoute)
+app.use('/tours', packageRoute)
 
 
 module.exports = app;

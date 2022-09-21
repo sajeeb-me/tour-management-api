@@ -121,3 +121,28 @@ exports.updatePackageById = async (req, res, next) => {
         })
     }
 }
+exports.getCheapestPackages = async (req, res, next) => {
+    try {
+        const result = await packageServices.getCheapestPackagesService();
+
+        if (!result) {
+            res.status(400).json({
+                status: 'failed',
+                message: 'Operation failed.'
+            })
+        } else {
+            res.status(200).json({
+                status: 'success',
+                message: 'Successfully modified the package',
+                data: result,
+            })
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            status: 'failed',
+            message: 'Operation failed.',
+            error: error.message
+        })
+    }
+}
